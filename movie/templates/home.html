@@ -3,15 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Document</title>
     <style>
-        .highlighted-name {
-            color: blue; /* Puedes cambiar "blue" por el color que desees */
+        .highlight {
+            color: blue;
+        }
+        .container {
+            margin: 20px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .form-control {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to the home page, <span class="highlighted-name">{{name}}</span></h1>
-    <p>This is the full home page</p>
+    <h1>Welcome to Home Page <span class="highlight">{{name}}</span></h1>
+    <h2>This is full Home Page</h2>
+
+    <div class="container">
+        <form action="">
+            <div class="mb-3">
+                <label for="searchMovie" class="form-label">Search for Movie:</label>
+                <input type="text" class="form-control" name="searchMovie"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <p>Searching for {{searchTerm}}</p>
+        {% for movie in movies %}
+            <h2>{{ movie.title }}</h2>
+            <h3>{{ movie.description }}</h3>
+            <img src="{{ movie.image.url }}">
+            {% if movie.url %}
+                <a href="{{ movie.url }}">Movie Link</a>
+            {% endif %}
+        {% endfor %}
+        <br/>
+    </div>
 </body>
 </html>
